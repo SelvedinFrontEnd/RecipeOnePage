@@ -3,10 +3,15 @@ export default function Ingredients({addIngredients, inputIngredientsRef}) {
         <>
             <label className="ingredients">
                 Add your ingredients:
-                <div ref={inputIngredientsRef} className="input-ingredients">
-
+                <div 
+                ref={inputIngredientsRef}
+                className="input-ingredients">
                 </div>
-                <button onClick={addIngredients} className="btn-plus">+</button>
+                <button 
+                onClick={addIngredients} 
+                className="btn-plus">
+                    +
+                </button>
             </label>
         </>
     )

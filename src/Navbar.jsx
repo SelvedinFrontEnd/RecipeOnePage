@@ -1,12 +1,11 @@
 import logo from "./download.png"
 
-export default function Navbar() {
+export default function Navbar({name}) {
     return(
         <>
             <nav>
                 <img src={logo} alt="" />
-                <div className="login">Login</div>
-                <div className="profile">Profile</div>
+                <div className="profile">{name}</div>
             </nav>
         </>
     )
