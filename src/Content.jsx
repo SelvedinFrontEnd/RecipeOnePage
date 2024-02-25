@@ -1,15 +1,18 @@
-export default function Content() {
-    return(
-        <>
-            <div className="hidden">
-                <h2>Title</h2>
-                <div>Ingredients</div>
-                <div>How to make</div>
-                <div>
-                  <div>Author</div> 
-                  <div>Rate</div> 
-                </div>
+export default function Content({ name, recipes }) {
+    return (
+      <>
+        {recipes.map((recipe, index) => (
+          <div key={index} className="">
+            <h2>{recipe.title}</h2>
+            <div>{recipe.ingredients.join(", ")}</div>
+            <div>{recipe.instructions}</div>
+            <div>
+              <div>{name}</div>
+              <div></div>
             </div>
-        </>
-    )
-}
+          </div>
+        ))}
+      </>
+    );
+  }
+  

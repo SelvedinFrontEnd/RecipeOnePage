@@ -6,13 +6,34 @@ import Login from "./Login"
 
 export default function App() {
   const [name, setName] = useState("")
-
+  const [recipeTitle, setRecipeTitle] = useState("");
+  const [ingredientsTitle, setIngredientsTitle] = useState("")
+  const [recipeContent, setRecipeContent] = useState("");
+  const [recipes, setRecipes] = useState([]);
+  
   return(
     <>
       <Navbar name={name} /> 
-      <SubmitRecipe /> 
+      <SubmitRecipe 
+      setRecipes={setRecipes}
+      addRecipe={addRecipe}
+      setRecipeTitle={setRecipeTitle}
+      setIngredientsTitle={setIngredientsTitle}
+      setRecipeContent={setRecipeContent} 
+      /> 
       <Login setName={setName} />
-      <Content /> 
+      
+      {recipes.map((recipe, index) => (
+      <Content
+      key={index}
+      name={name}
+      recipeTitle={recipeTitle}
+      ingredientsTitle={ingredientsTitle}
+      recipeContent={recipeContent}
+      recipes={recipes}
+      /> 
+      ))}
+      
     </>
   )
 }
