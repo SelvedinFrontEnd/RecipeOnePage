@@ -16,7 +16,6 @@ export default function App() {
       <Navbar name={name} /> 
       <SubmitRecipe 
       setRecipes={setRecipes}
-      addRecipe={addRecipe}
       setRecipeTitle={setRecipeTitle}
       setIngredientsTitle={setIngredientsTitle}
       setRecipeContent={setRecipeContent} 
