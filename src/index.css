@@ -313,16 +313,11 @@ ul {
   .btn-plus {
     height: 60px;
     width: 60px;
-    font-size: 3rem;
   }
 
   .recipe-container {
     width: 60%;
     font-size: 1.2rem;
-  }
-
-  strong {
-    font-size: 1.4rem;
   }
 
   .profile {
@@ -336,11 +331,6 @@ ul {
     display: grid;
     gap: 5rem;
     grid-template-columns: 1fr 1fr;
-    font-size: 1.4rem;
-  }
-
-  strong {
-    font-size: 1.6rem;
   }
 
   .recipe {
