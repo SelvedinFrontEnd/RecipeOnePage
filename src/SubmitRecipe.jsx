@@ -16,19 +16,41 @@ export default function SubmitRecipe({
 
     function addIngredients(e){
         e.preventDefault();
-
+    
+        const newInputContainer = document.createElement('div');
+        newInputContainer.className = "input-container";
+    
         const newInput = document.createElement('input');
         newInput.type = 'text';
-        newInput.className = "new-input"
-
+        newInput.className = "new-input";
+    
         newInput.addEventListener("input", (e) => {
             handleIgredientChange(ingredientValues.length, e.target.value)
-        })
-
-        inputIngredientsRef.current.appendChild(newInput)
-
+        });
+    
+        const newButton = document.createElement('button');
+        newButton.innerText = "-";
+        newButton.className = "btn-minus";
+        newButton.addEventListener("click", () => removeIngredient(newInputContainer));
+    
+        newInputContainer.appendChild(newInput);
+        newInputContainer.appendChild(newButton);
+    
+        inputIngredientsRef.current.appendChild(newInputContainer);
+    
         setIngredientValues((prevValues) => [...prevValues, ""]);
     };
+    
+    function removeIngredient(container) {
+        const index = Array.from(inputIngredientsRef.current.children).indexOf(container);
+        setIngredientValues((prevValues) => {
+            const newValues = [...prevValues];
+            newValues.splice(index, 1);
+            return newValues;
+        });
+    
+        container.remove();
+    }
 
     function handleIgredientChange(index, value) {
         setIngredientValues((prevValues) => {
