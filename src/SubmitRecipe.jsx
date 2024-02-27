@@ -3,11 +3,16 @@ import { useRef } from "react";
 import { useState } from "react";
 import CreateRecipe from "./CreateRecipe";
 
-export default function SubmitRecipe({setRecipes, addRecipe, setRecipeContent, setIngredientsTitle, setRecipeTitle}) {
+export default function SubmitRecipe({
+    handleSubmit,
+    title, 
+    ingredientValues, 
+    cookingInstructions,
+    setIngredientValues,
+    setCookingInstructions,
+    setTitle
+}) {
     const inputIngredientsRef = useRef();
-    const [title, setTitle] = useState("")
-    const [cookingInstructions, setCookingInstructions] = useState("")
-    const [ingredientValues, setIngredientValues] = useState([])
 
     function addIngredients(e){
         e.preventDefault();
@@ -32,35 +37,6 @@ export default function SubmitRecipe({setRecipes, addRecipe, setRecipeContent, s
             return newValues;
         });
     }
-        
-    function handleSubmit(e){
-        e.preventDefault()
-
-        const ingString = ingredientValues.join(", ");
-
-        if (!title || !cookingInstructions || ingredientValues.some(value => !value.trim())) {
-            alert("Please fill in all fields!");
-            return;
-        }
-       
-        document.querySelector(".submit-recipe").style.display = "none";
-        document.querySelector(".createrecipe").style.display = "flex"
-        setRecipeTitle(title);
-        setIngredientsTitle(ingredientValues);
-        setRecipeContent(cookingInstructions); 
-        
-        const newRecipe = {
-            title,
-            ingredients: [...ingredientValues],
-            instructions: cookingInstructions,
-          };
-      
-          setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-
-        setTitle("");
-        setCookingInstructions("");
-        setIngredientValues([]);
-    }    
 
     return(
         <>

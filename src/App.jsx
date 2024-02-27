@@ -6,32 +6,52 @@ import Login from "./Login"
 
 export default function App() {
   const [name, setName] = useState("")
-  const [recipeTitle, setRecipeTitle] = useState("");
-  const [ingredientsTitle, setIngredientsTitle] = useState("")
-  const [recipeContent, setRecipeContent] = useState("");
-  const [recipes, setRecipes] = useState([]);
+  const [title, setTitle] = useState("")
+  const [ingredientValues, setIngredientValues] = useState([])
+  const [cookingInstructions, setCookingInstructions] = useState("")
+  const [submitedRecipes, setSubmitedRecipes] = useState([])
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!title || !cookingInstructions || ingredientValues.some(value => !value.trim())) {
+      alert("Please fill in all fields!");
+      return;
+  }
   
+    const newRecipe = {
+      name: name,
+      title: title,
+      ingredients: [...ingredientValues],
+      cookingInstructions: cookingInstructions,
+    };
+    setSubmitedRecipes([...submitedRecipes, newRecipe]);
+    setTitle("");
+    setIngredientValues([]);
+    setCookingInstructions("");
+
+    document.querySelector("form").style.display = "none"
+    document.querySelector(".createrecipe").style.display = "flex"
+  }
+
   return(
     <>
-      <Navbar name={name} /> 
+      <Navbar name={name}/> 
       <SubmitRecipe 
-      setRecipes={setRecipes}
-      setRecipeTitle={setRecipeTitle}
-      setIngredientsTitle={setIngredientsTitle}
-      setRecipeContent={setRecipeContent} 
+      handleSubmit={handleSubmit}
+      ingredientValues={ingredientValues}
+      cookingInstructions={cookingInstructions}
+      title={title}
+      setTitle={setTitle}
+      setIngredientValues={setIngredientValues}
+      setCookingInstructions={setCookingInstructions}
       /> 
-      <Login setName={setName} />
-      
-      {recipes.map((recipe, index) => (
-      <Content
-      key={index}
+      <Login 
       name={name}
-      recipeTitle={recipeTitle}
-      ingredientsTitle={ingredientsTitle}
-      recipeContent={recipeContent}
-      recipes={recipes}
-      /> 
-      ))}
+      setName={setName} />
+      <Content 
+      submitedRecipes={submitedRecipes}
+      />
       
     </>
   )

@@ -1,17 +1,11 @@
-export default function Content({ name, recipes }) {
+import Recipe from "./Recipe"
+
+export default function Content({submitedRecipes}) {
     return (
       <>
-        {recipes.map((recipe, index) => (
-          <div key={index} className="">
-            <h2>{recipe.title}</h2>
-            <div>{recipe.ingredients.join(", ")}</div>
-            <div>{recipe.instructions}</div>
-            <div>
-              <div>{name}</div>
-              <div></div>
-            </div>
-          </div>
-        ))}
+       <Recipe
+       submitedRecipes={submitedRecipes}
+       />
       </>
     );
   }
